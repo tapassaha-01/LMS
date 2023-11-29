@@ -1,0 +1,26 @@
+
+<div class="d-flex justify-content-center pt-2 flex-column">
+    <!-- <div [hidden]="hide_content" id="content" class="p-5 d-flex justify-content-center m-3" style="border: 2px solid black;"></div> -->
+    <mat-card class="my-3">
+        
+        <mat-card-content *ngIf="!isContent" >
+            <mat-label [style.text-align]="'center'"><strong>{{policy.subType}}</strong></mat-label>
+            <div [innerHTML]="policy.content"></div>
+          </mat-card-content>
+    
+    <div class="d-flex p-3 flex-column " *ngIf="isContent">  
+        <h4 class="text-center pb-3">Write Your {{policy.subType}} here...</h4>
+        <form [formGroup]="leavePolicyForm" class=" h-100 pt-3 " >
+        <ckeditor [editor]="Editor" class="w-100" formControlName="content"></ckeditor></form>
+        </div>  </mat-card>
+    <div
+    class="d-flex justify-content-center">
+        <button mat-raised-button color="primary" style="margin-left: 5px;" *ngIf="(isAdmin || isView) && !isContent" (click)="onEditOrCreate()">{{(isCreateOrEdit==false)?'Edit':'Create'}}</button>
+        <button mat-raised-button color="primary" style="margin-left: 5px;" *ngIf="isContent" [disabled]="isDisable" (click)="onSave()"  >Save</button>
+        <button mat-raised-button color="primary" style="margin-left: 5px;" *ngIf="isContent" (click)=" onCancel()" >Cancel</button>
+        <button mat-raised-button color="primary" style="margin-left: 10px;"  [disabled]="isDownload" (click)="downloadAsTextFile()">Download</button></div>
+
+  
+    
+ 
+  </div>

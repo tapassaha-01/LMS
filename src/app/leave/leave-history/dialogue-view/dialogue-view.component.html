@@ -1,0 +1,106 @@
+<!-- <div class="d-flex justify-content-end align-item-center">
+  <button mat-icon-button [mat-dialog-close]="true" >
+      <mat-icon>close</mat-icon>
+    </button>
+</div>
+<div class="text-center mx-5 my-1">
+  <span style="font-weight: bold; font-size: 24px;">View Leave Details</span>
+
+  <div class="flex-container">
+      <span ><strong>Leave Type:</strong></span>
+      <mat-form-field style="margin-top: 22px;margin-left: 10px;" class="example-full-width" appearance="outline">
+          <mat-label>Leave Type</mat-label>
+          <input matInput readonly type="text"  [value]="leaveReqServ.getLeaveTypeText(leaveRequest.leaveType !== undefined ? leaveRequest.leaveType : '')">
+
+        </mat-form-field>
+  </div> 
+  <div class="flex-container">
+      <span><strong>Leave Duration:</strong></span>
+      <mat-form-field style="margin-top: 22px;margin-left: 10px;" class="example-full-width" appearance="outline">
+          <mat-label>Leave Duration</mat-label>
+          <input matInput readonly type="number" [value]="leaveReqServ.getLeaveDurationText(leaveRequest.leaveDuration?leaveRequest.leaveDuration:'')" >
+        </mat-form-field>
+  </div> 
+    
+  <div class="flex-container">
+    <span><strong>Date:</strong></span>
+    <mat-form-field style="margin-top: 22px;margin-left: 10px;" class="example-full-width" appearance="outline" readonly>
+      <mat-label>Date</mat-label>
+      <textarea matInput readonly>{{ getFormattedDates() }}</textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="flex-container">
+    <span><strong>Leave Reason:</strong></span>
+    <mat-form-field style="margin-top: 22px;margin-left: 10px;" class="example-full-width" appearance="outline" readonly>
+      <mat-label>Leave Reason</mat-label>
+      <textarea matInput readonly>{{leaveReason()}}</textarea>
+    </mat-form-field>
+  </div>
+</div> -->
+
+<!-- chart will be displayed here -->
+
+<div class="d-flex justify-content-end align-item-center ">
+
+  <h5 class="col-10 text-center my-3">View Leave Details</h5>
+  <button mat-icon-button [mat-dialog-close]="true" class="col-2">
+      <mat-icon>close</mat-icon>
+    </button>
+</div>
+
+
+
+
+
+
+<div class="text-center my-3 mx-5 ">
+ 
+<div class="flex-container mt-2">
+  <div class="row ">
+    <div class="col-6">
+      <!-- <span ><strong>Leave Type:</strong></span> -->
+      <mat-form-field class="h-auto ml-1 mt-2" appearance="outline">
+          <mat-label [style.color]="'blue'">Leave Type</mat-label>
+          <input matInput readonly type="text"  [value]="leaveReqServ.getLeaveTypeText(leaveRequest.leaveType !== undefined ? leaveRequest.leaveType : '')">
+
+        </mat-form-field>
+  </div> 
+  <div class="col-6">
+      <!-- <span ><strong>Leave Duration:</strong></span> -->
+      <mat-form-field class="h-auto ml-1 mt-2" appearance="outline">
+          <mat-label [style.color]="'blue'">Leave Duration</mat-label>
+          <input matInput readonly type="text" [value]="leaveReqServ.getLeaveDurationText(leaveRequest.leaveDuration?leaveRequest.leaveDuration:'')" >
+        </mat-form-field>
+      </div>
+      
+  </div>
+</div>
+  <div class="flex-container ">
+    <div class="row">
+    <div class="col-6 ">
+      <mat-form-field class="h-auto w-100" appearance="outline" readonly>
+        <mat-label [style.color]="'blue'">Leave Dates</mat-label>
+        <textarea matInput readonly>{{ getFormattedDates() }}</textarea>
+      </mat-form-field></div>
+      <div class="col-6 ">
+        <mat-form-field class="w-100"  appearance="outline" readonly>
+          <mat-label [style.color]="'blue'">Leave Reason</mat-label>
+          <textarea matInput readonly>{{leaveReason()}}</textarea>
+        </mat-form-field>
+      </div>
+      </div>
+     </div>
+      <div class="flex-container">
+     <div class="col-12 p-0 ">
+      <mat-form-field class="h-auto ml-1 w-100"  appearance="outline" readonly >
+        <mat-label [style.color]="'blue'" >Reject/Approved Reason</mat-label>
+        <textarea matInput readonly > {{leaveRequest.approvedrejectReason}}</textarea>
+      </mat-form-field>
+    </div></div>
+    
+
+
+</div>
+
+

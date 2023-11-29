@@ -1,0 +1,83 @@
+<div class="mat-elevation-z8" style="box-shadow: none;">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search...." #input>
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource">
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="Sl.No">
+        <th mat-header-cell *matHeaderCellDef  [style.text-transform]="'uppercase'"> Sl No </th>
+        <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+      </ng-container>
+  
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="empId">
+        <th mat-header-cell *matHeaderCellDef  [style.text-transform]="'uppercase'"> Emp Id </th>
+        <td mat-cell *matCellDef="let element"> {{element['empId']}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef  [style.text-transform]="'uppercase'"> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element['firstName']+' '+(element['middleName'] ? element['middleName']
+          :'')+' '+element['lastName']}}
+        </td>
+      </ng-container>
+  
+      <!-- Email Column -->
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef  [style.text-transform]="'uppercase'"> Location </th>
+        <td mat-cell *matCellDef="let element"> {{element['location']}} </td>
+      </ng-container>
+  
+      <!-- totalPL Column -->
+      <ng-container matColumnDef="totalL">
+        <th mat-header-cell *matHeaderCellDef  [style.text-transform]="'uppercase'"> TL/RL </th>
+        <td mat-cell *matCellDef="let element"> {{ element['totalPL'] + element['totalFL'] + element['totalCL'] }}/{{ element['remaingPL'] + element['remaingCL'] + element['remaingFL'] }}</td>
+      </ng-container>
+  
+      <!-- totalCL Column -->
+      <ng-container matColumnDef="totalPL">
+        <th mat-header-cell *matHeaderCellDef  [style.text-transform]="'uppercase'">PL/R.PL</th>
+        <td mat-cell *matCellDef="let element"> {{element['totalPL']}}/{{element['remaingPL']}}</td>
+      </ng-container>
+  
+      <!-- totalCL Column -->
+      <ng-container matColumnDef="totalCL">
+        <th mat-header-cell *matHeaderCellDef  [style.text-transform]="'uppercase'"> CL/R.CL </th>
+        <td mat-cell *matCellDef="let element"> {{element['totalCL']}}/{{element['remaingCL']}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="totalFL">
+        <th mat-header-cell *matHeaderCellDef  [style.text-transform]="'uppercase'">FL/R.FL</th>
+        <td mat-cell *matCellDef="let element"> {{element['totalFL']}}/{{element['remaingFL']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef  [style.text-transform]="'uppercase'"></th>
+        <td mat-cell *matCellDef="let element">
+          <button (click)="openViewDialog(element['empId'])" mat-icon-button color="green">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <div style="background-color: white;">
+        <button mat-raised-button color="primary" style="margin-left: 44%; margin-top: 10px;  margin-bottom: 10px;color: #f8f8f8;"
+       (click)="downloadExcel()" >Export to Excel</button>
+    </div>
+
+    
+  
+    <!-- <mat-paginator *ngIf="dataSource.data.length > 9" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+      aria-label="Select page of periodic elements">
+    </mat-paginator> -->
+   
+  <mat-paginator pageSize="10"  [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons
+    aria-label="Select page of periodic elements">
+  </mat-paginator>
+  </div>

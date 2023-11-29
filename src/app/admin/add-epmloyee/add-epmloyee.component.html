@@ -1,0 +1,123 @@
+<div >
+  <div class="example-small-box ">
+    <form #register="ngForm" (ngSubmit)="  register.form.valid  && onSubmit()" class="example-form">
+      <mat-form-field class="app-form-control fml" appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input [(ngModel)]="draftEmployee.firstName" matInput placeholder="" name="firstname" required="true">
+      </mat-form-field>
+
+      <mat-form-field class="app-form-control fml" appearance="outline">
+        <mat-label>Middle Name</mat-label>
+        <input [(ngModel)]="draftEmployee.middleName" matInput placeholder="" name="middlename">
+      </mat-form-field>
+
+      <mat-form-field class="app-form-control fml" appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input [(ngModel)]="draftEmployee.lastName" matInput placeholder="" name="lastname" required="true">
+      </mat-form-field>
+
+        <mat-form-field class="app-form-control fml" appearance="outline">
+          <mat-label>Employee Id</mat-label>
+          <input [(ngModel)]="draftEmployee.empId" matInput placeholder="" name="empid" required="true" #empid="ngModel"
+            appEmpidVerify source="empId">
+          <mat-error *ngIf="(empid.errors && empid.touched)">
+            <ng-container *ngIf="empid.errors?.['required']">Emplyoee id is required.</ng-container>
+            <ng-container *ngIf="empid.errors?.['empidInvalid']">Emplyoee id is exist.</ng-container>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="app-form-control fml" appearance="outline">
+          <mat-label>User Name</mat-label>
+          <input [(ngModel)]="draftEmployee.userName" matInput placeholder="" name="userName" required="true"
+            #userName="ngModel" appEmpidVerify source="userName" (input)="append()">
+          <mat-error *ngIf="(userName.errors && userName.touched)">
+            <ng-container *ngIf="userName.errors?.['required']">userName is required.</ng-container>
+            <ng-container *ngIf="userName.errors?.['empidInvalid']">userName is exist.</ng-container>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="app-form-control fml" appearance="outline">
+          <mat-label>E-Mail</mat-label>
+          <input [(ngModel)]="draftEmployee.email" matInput placeholder="" name="email" required="true" email="true"
+            #email="ngModel" appEmpidVerify source="email"    [value]="draftEmployee.userName + '@interait.com'" [disabled]="draftEmployee.userName === ''">
+          <mat-error *ngIf="(email.errors && email.touched)">
+            <ng-container *ngIf="email.errors?.['required']">Mail is required.</ng-container>
+            <ng-container *ngIf="email.errors?.['empidInvalid']">Mail is exist.</ng-container>
+          </mat-error>
+        </mat-form-field>
+
+      <mat-form-field class="app-form-control fml" appearance="outline">
+        <mat-label>Location</mat-label>
+        <mat-select [(ngModel)]="draftEmployee.location" name="location" required="true">
+          <mat-option value="NOIDA">NOIDA</mat-option>
+          <mat-option value="KOLKATA">KOLKATA</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="app-form-control fml" appearance="outline">
+        <mat-label>Date Of Joining</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="draftEmployee.doj" name="doj" required="true">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="app-form-control fml" appearance="outline">
+        <mat-label>Date Of Exit</mat-label>
+        <input matInput [matDatepicker]="picker1" [(ngModel)]="draftEmployee.doe" name="doe">
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="app-form-control fml" appearance="outline">
+        <mat-label>Gender</mat-label>
+        <mat-select [(ngModel)]="draftEmployee.gender"  name="gender" required="true">
+          <mat-option value="Female">FEMALE</mat-option>
+          <mat-option value="Male">MALE</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="app-form-control fml" appearance="outline">
+        <mat-label>FLM</mat-label>
+        <mat-select [(ngModel)]="selectedFLM" name="flm" required="true">
+          <ng-container *ngFor="let lms of managerList ">
+            <mat-option [value]="lms.empId" *ngIf="(lms.isManager?.toLowerCase()=== 'yes')">
+              {{ lms.firstName }} {{lms.middleName}} {{lms.lastName}}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field class="app-form-control fml" appearance="outline">
+        <mat-label>SLM</mat-label>
+        <mat-select [(ngModel)]="draftEmployee.secondLvlMgrId" name="slm">
+          <ng-container *ngFor="let lms of filterSLMOptions() ">
+            <mat-option [value]="lms.empId" *ngIf="(lms.isManager?.toLowerCase() === 'yes')">
+              {{ lms.firstName }} {{lms.middleName}} {{lms.lastName}}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="app-form-control control-with-half" appearance="outline">
+        <mat-label>Is Manager</mat-label>
+        <mat-select [(ngModel)]="draftEmployee.isManager" name="isManager" required="true">
+          <mat-option value="YES">YES</mat-option>
+          <mat-option value="NO">NO</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="app-form-control control-with-half" appearance="outline">
+        <mat-label>Is Admin</mat-label>
+        <mat-select [(ngModel)]="draftEmployee.isAdmin" name="isAdmin" required="true">
+          <mat-option value="YES">YES</mat-option>
+          <mat-option value="NO">NO</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br>
+      <button mat-raised-button style="margin-left: 48%; margin-top: 10px; background-color:#5469e2;color: #f8f8f8;"
+        [disabled]="register.form.status === 'INVALID'">Add</button>
+
+    </form>
+  </div>
+</div>

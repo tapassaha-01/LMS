@@ -1,0 +1,48 @@
+table {
+    width: 35%;
+  }
+  .date-approved {
+    background-color: green; /* Change to your desired color */
+    color: white; /* Change text color if needed */
+  }
+  
+  .date-pending {
+    background-color: red; /* Change to your desired color */
+    color: white; /* Change text color if needed */
+  }
+ /* Global Styles */
+/* ... */
+
+.flex-container {
+  display: flex;
+  align-items: center;
+  margin: 10px; /* Adjust the margin as needed */
+}
+
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px; /* Adjust the size as needed */
+  height: 20px; /* Adjust the size as needed */
+  border-radius: 50%;
+  font-weight: bold; /* Optional */
+  color: white; /* Optional - Text color */
+}
+
+.green-bg {
+  background-color: green;
+}
+
+.red-bg {
+  background-color: red;
+}
+.table-cell{
+  text-align: center;
+  width:100%;
+  font-weight: normal;
+  font-size: 24px;
+}
+.table-cell:hover{
+  color: antiquewhite;
+}

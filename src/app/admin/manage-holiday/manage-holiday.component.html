@@ -1,0 +1,44 @@
+<div>
+    <div class="example-small-box ">
+      <form class="example-form">
+        
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Country Name</mat-label>
+          <mat-select [(ngModel)]="holidayMasterInput.country" name="selectedCountry">
+          <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <ng-container *ngIf="holidayMasterInput.country">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Place Name</mat-label>
+            <mat-select [(ngModel)]="holidayMasterInput.holidayPlace" name="selectedPlace">
+              <mat-option *ngFor="let place of countryToPlaces[holidayMasterInput.country]" [value]="place">{{ place }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </ng-container>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Holiday Name</mat-label>
+          <input [(ngModel)]="holidayMasterInput.holidayName" matInput placeholder="Holi" name="holiday">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Holiday Type</mat-label>
+          <mat-select [(value)]="holidayMasterInput.holidayType" required="true">
+            <mat-option value="Floating Holiday">Floating Holiday</mat-option>
+            <mat-option value="National Holiday">National Holiday</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker" [matDatepickerFilter]="holidayDateFilter"
+            [(ngModel)]="holidayMasterInput.holidayDate" name="selectedDate">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="button-container">
+      <button mat-raised-button style="background-color: #3f51b5;color: #f8f8f8;"  (click)="onSubmit()">Add</button>
+    </div>
+  </div>

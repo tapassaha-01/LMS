@@ -1,0 +1,13 @@
+.header {
+    // background-color: black;
+    height: 6em;
+    color: white;
+    background: rgb(185, 34, 34);
+    background: linear-gradient(90deg, rgba(185, 34, 34, 1) 0%, rgba(172, 123, 22, 1) 51%, rgba(219, 154, 11, 0.9136029411764706) 100%);
+}
+
+.header>p {
+    line-height: 2em;
+    font-size: 36px;
+    padding-left: 3em;
+}

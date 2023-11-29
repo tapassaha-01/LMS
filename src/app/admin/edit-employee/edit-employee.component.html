@@ -1,0 +1,132 @@
+
+    <div class="example-small-box ">
+      <form #register="ngForm" (ngSubmit)="  register.form.valid  && onSubmit() " class="example-form">
+        <mat-form-field class="app-form-control fml" appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input [(ngModel)]="employee.firstName" matInput placeholder="" name="firstname" required="true">
+        </mat-form-field>
+
+        <mat-form-field class="app-form-control fml" appearance="outline">
+          <mat-label>Middle Name</mat-label>
+          <input [(ngModel)]="employee.middleName" matInput placeholder="" name="middlename">
+        </mat-form-field>
+
+        <mat-form-field class="app-form-control fml" appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input [(ngModel)]="employee.lastName" matInput placeholder="" name="lastname" required="true">
+        </mat-form-field>
+
+        <mat-form-field class="app-form-control fml" appearance="outline">
+          <mat-label>Employee Id</mat-label>
+          <input [(ngModel)]="employee.empId" matInput placeholder="" name="empid" required="true" #empid="ngModel"
+            [appEmpidVerify]="employee.id" source="empId">
+          <mat-error *ngIf="(empid.errors && empid.touched)">
+            <ng-container *ngIf="empid.errors?.['required']">Emplyoee id is required.</ng-container>
+            <ng-container *ngIf="empid.errors?.['empidInvalid']">Emplyoee id is exist.</ng-container>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="app-form-control fml" appearance="outline">
+          <mat-label>User Name</mat-label>
+          <input [(ngModel)]="employee.userName" matInput placeholder="" name="userName" required="true"
+            #userName="ngModel" [appEmpidVerify]="employee.id" source="userName">
+          <mat-error *ngIf="(userName.errors && userName.touched)">
+            <ng-container *ngIf="userName.errors?.['required']">userName is required.</ng-container>
+            <ng-container *ngIf="userName.errors?.['empidInvalid']">userName is exist.</ng-container>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="app-form-control fml" appearance="outline">
+          <mat-label>E-Mail</mat-label>
+          <input [(ngModel)]="employee.email" matInput placeholder="" name="email" required="true" #email="ngModel"
+            [appEmpidVerify]="employee.id" source="email">
+          <mat-error *ngIf="(email.errors && email.touched)">
+            <ng-container *ngIf="email.errors?.['required']">Mail is required.</ng-container>
+            <ng-container *ngIf="email.errors?.['empidInvalid']">Mail is exist.</ng-container>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="app-form-control fml" appearance="outline">
+          <mat-label>Location</mat-label>
+          <mat-select  [(ngModel)]="employee.location" name="location" required="true">
+            <mat-option value="NOIDA">NOIDA</mat-option>
+            <mat-option value="KOLKATA">KOLKATA</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="app-form-control fml" appearance="outline">
+          <mat-label>Date Of Joining</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="employee.doj" name="doj" required="true">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="app-form-control fml" appearance="outline">
+          <mat-label>Date Of Exit</mat-label>
+          <input matInput [matDatepicker]="picker1" [(ngModel)]="employee.doe" name="doe">
+          <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="app-form-control control-with-half" appearance="outline">
+          <mat-label>Gender</mat-label>
+          <mat-select [(ngModel)]="employee.gender"  name="gender" required="true">
+            <mat-option value="Female">FEMALE</mat-option>
+            <mat-option value="Male">MALE</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="app-form-control control-with-half" appearance="outline">
+          <mat-label>FLM</mat-label>
+          <mat-select [(ngModel)]="selectedFLM" name="flm" required="true">
+            <ng-container *ngFor="let manager of managerList ">
+              <mat-option [value]="manager.empId" *ngIf="(manager.isManager?.toLowerCase()=== 'yes')">
+                {{ manager.firstName }} {{manager.middleName}} {{manager.lastName}}
+              </mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="app-form-control control-with-half" appearance="outline">
+          <mat-label>SLM</mat-label>
+          <mat-select [(ngModel)]="employee.secondLvlMgrId" name="slm">
+            <ng-container *ngFor="let manager of filterSLMOptions() ">
+              <mat-option [value]="manager.empId" *ngIf="(manager.isManager?.toLowerCase()=== 'yes')">
+                {{ manager.firstName }} {{manager.middleName}} {{manager.lastName}}
+              </mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="app-form-control control-with-half" appearance="outline" >
+          <mat-label>Is Manager</mat-label>
+          <mat-select [(ngModel)]="employee.isManager" name="isManager" required="true">
+            <mat-option value="YES">YES</mat-option>
+            <mat-option value="NO">NO</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="app-form-control control-with-half" appearance="outline">
+          <mat-label>Is Admin</mat-label>
+          <mat-select [(ngModel)]="employee.isAdmin" name="isAdmin" required="true">
+            <mat-option value="YES">YES</mat-option>
+            <mat-option value="NO">NO</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="app-form-control control-with-half" appearance="outline">
+          <mat-label>Is Active</mat-label>
+          <mat-select [(ngModel)]="employee.isActive" name="isActive" required="true">
+            <mat-option [value]="true">YES</mat-option>
+            <mat-option [value]="false">NO</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <div style="display: flex; justify-content: center;">
+        <button mat-raised-button style="margin-left: 0%; margin-top: 10px; background-color: #5469e2;"
+          [disabled]="register.form.status === 'INVALID'">Update</button>
+        <button mat-raised-button (click)="onClick()"style="margin-left:10px; margin-top: 10px; background-color: #5469e2;"
+          >Cancel</button>
+        </div>
+      </form>
+    </div>

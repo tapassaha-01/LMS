@@ -1,0 +1,8 @@
+
+
+<a [routerLink]="breadcrumb.bcRouterLink" *ngIf="breadcrumb && !breadcrumb?.bcCurrent" >
+    {{breadcrumb.bcName}}
+</a>
+<label class="breadcrumb_name" *ngIf="breadcrumb && breadcrumb?.bcCurrent" >{{breadcrumb.bcName}}</label>
+<span *ngIf="breadcrumb?.bcChild " > / </span>
+<app-breadcrumb *ngIf="breadcrumb?.bcChild" [breadcrumb]="breadcrumb?.bcChild"></app-breadcrumb>

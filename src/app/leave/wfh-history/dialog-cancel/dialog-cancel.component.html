@@ -1,0 +1,20 @@
+<div class="d-flex justify-content-end align-item-center">
+    <div class="col-10 text-center mt-3  row"><h6>WFH Cancel Reason</h6></div>
+  <button mat-icon-button [mat-dialog-close]="true" class="align-item-end col-2">
+    <mat-icon>close</mat-icon>
+  </button>
+  </div>
+  
+  
+  <div class="flex-container mx-2 my-2">
+    <div class="col m-3">
+      <mat-form-field appearance="outline">
+        <mat-label>Reason</mat-label>
+        <textarea [(ngModel)]="draftCancelRequest.cancelReason" name="textreason" matInput></textarea>
+  
+      </mat-form-field>
+      <div class="w-100 d-flex justify-content-center" >
+        <button mat-button style="background-color: aliceblue;" (click)="onSubmit()" [style.background-color]="'#3f51b5'" [style.color]="'#f8f8f8'">Submit</button>
+      </div>
+    </div>
+  </div>

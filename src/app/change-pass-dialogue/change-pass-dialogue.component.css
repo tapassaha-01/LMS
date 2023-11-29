@@ -1,0 +1,14 @@
+.mat-dialog-content {
+ 
+  }
+  
+  .mat-form-field-spacing {
+    margin: 5px;
+   
+  }
+  .vertical-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  

@@ -1,0 +1,28 @@
+.flex-container {
+    display: flex;
+    align-items: center;
+    margin: 10px; /* Adjust the margin as needed */
+  }
+  
+  .circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px; /* Adjust the size as needed */
+    height: 20px; /* Adjust the size as needed */
+    border-radius: 50%;
+    font-weight: bold; /* Optional */
+    color: white; /* Optional - Text color */
+  }
+  
+  .green-bg {
+    background-color: green;
+  }
+  
+  .yellow-bg {
+    background-color: #ffc107
+  }
+  .chart-label {
+    font-size: 10px;
+  }
+    

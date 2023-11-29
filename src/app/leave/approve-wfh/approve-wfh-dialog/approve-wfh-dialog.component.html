@@ -1,0 +1,104 @@
+<!-- chart will be displayed here -->
+
+<div class="d-flex justify-content-end align-item-center ">
+
+ 
+    <button mat-icon-button [mat-dialog-close]="true" class="col-2">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  
+  
+  
+  
+  
+  
+  <div class=" mb-3 mx-4">
+  <div class="d-flex">
+    <div class="row">
+      <h5 class="w-100 text-center ">Work From Home Details</h5>
+  
+    <div class="container mt-2 ">
+      <div class="row ">
+        <div class="col-6">
+          <!-- <span ><strong>Leave Type:</strong></span> -->
+          <mat-form-field class="h-auto ml-1 mt-2 w-100" appearance="outline">
+            <mat-label [style.color]="'blue'">Leave Type</mat-label>
+            <input matInput readonly type="text" [value]="getLeaveType(users.workType)">
+  
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <!-- <span ><strong>Leave Duration:</strong></span> -->
+          <mat-form-field class="h-auto ml-1 mt-2 w-100" appearance="outline">
+            <mat-label [style.color]="'blue'">Leave Duration</mat-label>
+            <input matInput readonly type="text" [value]="getLeaveDurationText(users.WorkDuration)">
+          </mat-form-field>
+        </div>
+  
+      </div>
+    </div>
+    <div class="container ">
+      <div class="row">
+        <div class="col-6 ">
+          <mat-form-field class="h-auto w-100" appearance="outline" readonly>
+            <mat-label [style.color]="'blue'">Leave Dates</mat-label>
+            <textarea matInput readonly>{{getleave()}}</textarea>
+          </mat-form-field>
+        </div>
+        <div class="col-6 ">
+          <mat-form-field class="w-100" appearance="outline" readonly>
+            <mat-label [style.color]="'blue'">Leave Reason</mat-label>
+            <textarea matInput readonly>{{users.applicationReason}}</textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="col-12 p-0 ">
+        <mat-form-field class="h-auto ml-1 w-100" appearance="outline" readonly>
+          <mat-label [style.color]="'blue'">Reject/Approve Reason</mat-label>
+          <textarea matInput [(ngModel)]="reason" ></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  
+    <div class="container  w-100 ">
+  
+      <h5 class=" text-center w-100 ">Attached Document</h5>
+  
+    <div style="border: 1px solid #0e0d0d; padding: 10px;margin-top: 24px;">
+      <table mat-table [dataSource]="dataSource">
+          
+        <ng-container matColumnDef="slno">
+          <th mat-header-cell *matHeaderCellDef  > Sl No. </th>
+          <td mat-cell *matCellDef="let element; let i = index"> {{ i+1 }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fileName">
+          <th mat-header-cell *matHeaderCellDef  > FileName </th>
+          <td mat-cell *matCellDef="let element;"> <a href="javascript:void(0);" (click)="fileDownload(element['actualFileId'], element['fileName'])">{{ element['fileName'] }}</a>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fileType">
+          <th mat-header-cell *matHeaderCellDef  > FileType </th>
+          <td mat-cell *matCellDef="let element"> {{ element['fileType']}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+       
+      
+    </div>
+  </div>
+    <div class="button-container d-flex justify-content-center" *ngIf="users.applicationStatus === 'PND'">
+      <button mat-raised-button color="primary" class="cl1" (click)="onSubmit('Approved')" [disabled]="">Approve</button>
+      <button mat-raised-button color="primary" style="margin-left: 5px;" (click)="onSubmit('Rejected')">Reject</button>
+    </div>
+  
+  
+  </div>

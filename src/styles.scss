@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.w-p-100 {
+    width: 100% !important;
+}
+
+.w-p-50 {
+    width: 50% !important;
+}
+
+.float-right {
+    float: right !important;
+}
+
+// .date-selected > :first-child {
+//     background-color: red !important;
+//     border-radius: 999px;
+//     border-color: rgba(0,0,0,.38);
+// }
+
+.date-approved > :first-child {
+    background-color: greenyellow!important;
+    border-radius: 999px;
+    border-color: rgba(0,0,0,.38);
+}

@@ -1,0 +1,35 @@
+<div class="h-100 px-5 py-5 m-5">
+  <div class="text-center " >
+    <h4 >Select the Type of Policy...</h4>
+  </div>  
+<form [formGroup]="leavePolicyForm" class=" h-100 pt-3 " >
+
+  <div class="w-100 d-flex justify-content-center">
+   <mat-form-field appearance="outline" class="col-6 px-4">
+    <mat-label>Policy Type</mat-label>
+    <mat-select formControlName="policyType">
+      <mat-option *ngFor="let policyType of policyTypeLst" [value]="policyType">{{ policyType }}</mat-option>
+    </mat-select>
+  </mat-form-field></div>
+
+<div class="w-100 d-flex justify-content-center" *ngIf="leavePolicyForm.value.policyType!=''">
+  <mat-form-field appearance="outline" class="col-6 px-4">
+    <mat-label>{{this.leavePolicyForm.value.policyType}}</mat-label>
+    <mat-select  formControlName="subType">
+      <mat-option *ngFor="let leaveType of leaveTypeLst" [value]="leaveType">{{ leaveType }}</mat-option>
+    </mat-select>
+  </mat-form-field></div>
+  
+</form>
+
+  <div class="d-flex justify-content-center pt-2">
+    <!-- <button mat-button (click)="onView()"  *ngIf="on_view">  <mat-icon>visibility</mat-icon></button> -->
+    <button mat-raised-button color="primary" (click)=" onView()" *ngIf="leavePolicyForm.value.subType!=''">{{(on_view==true)?'View':'Close'}}</button>
+    </div>
+
+  <div [hidden]="hide_content" id="content" class="p-5 " >
+    
+ 
+  </div>
+
+</div>

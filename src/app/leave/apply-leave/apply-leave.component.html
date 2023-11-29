@@ -1,0 +1,327 @@
+
+
+<section>
+  <div class="head">
+    <div class="clearfix"></div>
+  </div>
+  <div class="clearfix"></div>
+  <br />
+  <div class="page-content">
+    <!-- <div class="d-flex">
+      <mat-card class="col-div-3">
+        <div class="box ">
+          <div class="box-first">
+            <span>Remaining Total Leave</span>
+          </div>
+          <div class="box-second">
+            <span>{{ leaveSummary.remaingLeave }}</span>
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-first">
+            <span>Pending Total Leave</span>
+          </div>
+          <div class="box-second">
+            <span>{{ leaveSummary.totalPending }}</span>
+          </div>
+        </div>
+      </mat-card>
+
+      <mat-card class="col-div-3" style="margin-left: 10px">
+        <div class="box">
+          <div class="box-first">
+            <span>Remaining Privilege Leave</span>
+          </div>
+          <div class="box-second">
+            <span>{{ leaveSummary.remaingPL }}</span>
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-first">
+            <span>Pending Privilege Leave</span>
+          </div>
+          <div class="box-second">
+            <span>{{ leaveSummary.pendingPL }}</span>
+          </div>
+        </div>
+      </mat-card>
+      <mat-card class="col-div-3" style="margin-left: 10px">
+        <div class="box">
+          <div class="box-first">
+            <span>Remaining Casual Leave</span>
+          </div>
+          <div class="box-second">
+            <span>{{ leaveSummary.remaingCL }}</span>
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-first">
+            <span>Pending Casual Leave</span>
+          </div>
+          <div class="box-second">
+            <span>{{ leaveSummary.pendingCL }}</span>
+          </div>
+        </div>
+      </mat-card>
+      <mat-card class="col-div-3" style="margin-left: 10px">
+        <div class="box">
+          <div class="box-first">
+            <span>Remaining Floating Leave</span>
+          </div>
+          <div class="box-second">
+            <span>{{ leaveSummary.remaingFL }}</span>
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-first">
+            <span>Pending Floating Leave</span>
+          </div>
+          <div class="box-second">
+            <span>{{ leaveSummary.pendingFL }}</span>
+          </div>
+        </div>
+      </mat-card>
+    </div> -->
+    <div class="d-flex flex-row">
+      <mat-card class="col-div-3 p-2" >
+        <div class="leave-info" >
+          <mat-icon>info</mat-icon>
+        </div>
+        <div class="d-flex flex-column justify-content-center px-2">
+          <div class="tl_box">
+              <div class="row" style="width:min-content">
+                <span style="font-size: 25px;">Total</span>
+                <span style="font-size: 25px;">Leave</span>
+              </div>
+            <div class="row">
+              <h4 class="p-2 d-flex mb-0 justify-content-center " style="color: #5469e2;font-weight: bold;">
+                {{leaveSummary.totalPL +leaveSummary.totalCL +leaveSummary.totalFL}}
+              </h4>
+              <label class=" pt-2 d-flex justify-content-center" style="font-size: 12px;">
+                (Remaining:{{leaveSummary.remaingPL +leaveSummary.remaingCL +leaveSummary.remaingFL}})</label>
+            </div>
+          
+          </div>
+          
+        </div>
+  
+       
+      </mat-card>
+  
+      <mat-card class="col-div-3 p-2">
+        <div class="leave-info" >
+          <mat-icon (click)="openDialog('PL')">info</mat-icon>
+       </div>
+        <div class="d-flex flex-column justify-content-center ">
+          <div class="tl_box">
+              <div class="row " style="width:min-content">
+                <span style="font-size: 25px;">Privilege</span>
+                <span style="font-size: 25px;">Leave</span>
+              </div>
+            <div class="row text-center">
+              <h4 class="p-2 d-flex mb-0 justify-content-center " style="color: #5469e2;font-weight: bold;">{{ leaveSummary.totalPL }}
+              </h4>
+              <label class="d-flex pt-2 justify-content-center" style="font-size: 12px;">
+                (Remaining: {{ leaveSummary.remaingPL }})</label>
+            </div>
+            
+          </div>
+        </div>
+  
+        
+      </mat-card>
+  
+  
+      <mat-card class="col-div-3 p-2" >
+        <div class="leave-info" >
+           <mat-icon (click)="openDialog('CL')">info</mat-icon>
+        </div>
+  
+        <div class="d-flex flex-column justify-content-center ">
+          <div class="tl_box">
+              <div class="row " style="width:min-content">
+                <span style="font-size: 25px;">Casual</span>
+                <span style="font-size: 25px;">Leave</span>
+              </div>
+            <div class="row text-center">
+              <h4 class="p-2 d-flex mb-0 justify-content-center " style="color: #5469e2;font-weight: bold;">{{ leaveSummary.totalCL }}
+              </h4>
+              <label class="d-flex pt-2 justify-content-center" style="font-size: 12px;">
+                (Remaining: {{ leaveSummary.remaingCL }})</label>
+            </div>
+            
+          </div>
+        </div>
+  
+        
+      </mat-card>
+  
+  
+      <mat-card class="col-div-3 p-2" >
+        <div class="leave-info" >
+          <mat-icon (click)="openDialog('FL')">info</mat-icon>
+        </div>
+        <div class="d-flex flex-column justify-content-center ">
+          <div class="tl_box">
+              <div class="row " style="width:min-content">
+                <span style="font-size: 25px;">Floating</span>
+                <span style="font-size: 25px;">Leave</span>
+              </div>
+            <div class="row text-center">
+              <h4 class="p-2 d-flex mb-0 justify-content-center " style="color: #5469e2;font-weight: bold;">{{ leaveSummary.totalFL }}
+              </h4>
+              <label class="d-flex pt-2 justify-content-center" style="font-size: 12px;">
+                (Remaining: {{ leaveSummary.remaingFL }})</label>
+            </div>
+            
+          </div>
+        </div>
+  
+       
+      </mat-card>
+    </div>
+    <div class="clearfix"></div>
+    <div class="container px-2" >
+      <div class="row w-100">
+        <div class="col-8">
+          <div class="w-100">
+            <h5 class="my-4">Request For leave</h5>
+            <div class="w-100">
+              <div class="col-12">
+                <mat-form-field class="col-6 p-2" appearance="outline">
+                  <mat-label>Select Leave Type</mat-label>
+                  <mat-select
+                    [(value)]="leaveRequestInp.leaveType"
+                    required="true"
+                  >
+                    <mat-option value="PL">Privilege Leave</mat-option>
+                    <mat-option value="CL">Casual Leave/Sick Leave</mat-option>
+                    <mat-option value="FL">Floating Leave</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field class="col-6 p-2" appearance="outline">
+                  <mat-label>Leave Duration</mat-label>
+                  <mat-select
+                    [(value)]="leaveRequestInp.leaveDuration"
+                    (selectionChange)="changeDuration()"
+                  >
+                    <mat-option value="1.00">Full Day</mat-option>
+                    <mat-option value="0.50">Half Day</mat-option>
+                    <mat-option value="0.25">2 HR</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <mat-form-field class="col-12 px-2 " appearance="outline">
+                <mat-label>Leave Reasons</mat-label>
+                <textarea
+                  matInput
+                  [(ngModel)]="leaveRequestInp.leaveReason"
+                ></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="grid-item p-0">
+            <h5>Leave Summary</h5></div>
+          <div class="grid-item p-0">
+            <table mat-table [dataSource]="dataSource" class="demo-table">
+              <ng-container matColumnDef="slNo">
+                <th mat-header-cell *matHeaderCellDef>No.</th>
+                <td mat-cell *matCellDef="let element; let i = index">
+                  {{ i + 1 }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>Date</th>
+                <td mat-cell *matCellDef="let element">{{ element.date }}</td>
+              </ng-container>
+              <ng-container matColumnDef="duration">
+                <th mat-header-cell *matHeaderCellDef>Duration</th>
+                <td mat-cell *matCellDef="let element">
+                  {{
+                    leaveRequestService.getLeaveDurationText(element.duration)
+                  }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>Action</th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-icon-button color="accent"
+                  (click)="removeData(element.date)">
+                  <mat-icon>cancel</mat-icon>
+                </button></td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+          </div>
+
+          <div class="grid-item">
+            <div class="grid-container">
+              <div class="grid-item p-0 mx-2">
+                <div class="w-p-100">
+                  <button
+                    class="float-right"
+                    mat-raised-button
+                    color="primary"
+                    (click)="onSubmit()"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
+              <div class="grid-item p-0 mx-2">
+                <div class="w-p-100">
+                  <button mat-raised-button (click)="onCancel()">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 ">
+            <mat-card class="w-p-100 mr-3 mt-3 ">
+              <mat-calendar
+                #calendar
+                (selectedChange)="daySelected($event, calendar)"
+                [dateFilter]="holidayDateFilter"
+                [dateClass]="dateClass"
+              ></mat-calendar>
+            </mat-card>
+
+            <div class="flex-container mx-0 my-2 ">
+              <div class="circle green-bg" style=" background-color: #42d856"></div>
+              <div style="margin-left: 10px; font-size: 13px; font-weight: bold;">
+                Approved 
+              </div>
+        
+              <div class="circle " style="margin-left: 8px; background-color: #a7aaad" ></div>
+              <div style="margin-left: 10px; font-size: 13px; font-weight: bold;">
+                Applied
+              </div>
+
+              <div class="circle " style="margin-left: 8px; background-color: #e74b58" ></div>
+              <div style="margin-left: 10px; font-size: 13px; font-weight: bold;">
+                Holiday
+              </div>
+
+              <div class="circle " style="margin-left: 8px; background-color: #3f51b5" ></div>
+              <div style="margin-left: 10px; font-size: 13px; font-weight: bold;">
+               Selected
+              </div>
+            </div>
+          
+        </div>
+       
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+
+    <mat-divider></mat-divider>
+  </div>
+  <div class="overlay" *ngIf="leaveStatus === 'Waiting for approval'"></div>
+
+  <!-- Dialog to show pending leave message -->
+  <mat-dialog-container *ngIf="leaveStatus === 'Waiting for approval'">
+    <h2>Pending Leave</h2>
+    <p>Your leave request is pending approval.</p>
+  </mat-dialog-container>
+</section>

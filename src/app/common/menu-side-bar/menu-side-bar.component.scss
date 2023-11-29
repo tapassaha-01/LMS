@@ -1,0 +1,135 @@
+@import '../../../custom-theme.scss';
+.d-container {
+  width: 200px;
+  height: 100%;
+}
+
+.t-container {
+  background: #5469e2;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.profile {
+  position: absolute;
+  width: 100%;
+  bottom: -60px;
+  left: 15px;
+  border-radius: 50%;
+  background: #f3ebeb;
+  padding: 5px;
+}
+.mat-elevation-z0 {
+  box-shadow: none;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+  box-shadow: none!important;
+}
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+  margin-right:0px!important;
+}
+.profile-name {
+  font-size: 20px;
+  align-items: center;
+  color: #080808;
+  font-size: 18px;
+  font-weight: bold;
+}
+mat-drawer{
+  overflow-y: auto;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+}
+
+.profile-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-designation {
+  font-size: 14px;
+  color: #888;
+}
+
+.profile-details {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.custom-menu {
+  width: 200px;
+  max-height: 300px;
+}
+
+.side-menu-label {
+  padding-left: 10px;
+
+}
+.side-menu{
+  display: flex;
+  flex-direction: row;
+}
+
+span.mat-expansion-indicator {
+  margin-left: 8px !important;
+}
+
+.mat-expansion-panel-header.mat-expanded {
+  height: 48px !important;
+}
+.mat-expansion-panel-header{
+  padding:0 16px!important;
+}
+
+::ng-deep .mat-expansion-panel-body {
+  padding: 0px!important;
+}
+
+.page-heading {
+  height: 50px;
+ // background-color: red;
+  position: relative;
+  line-height: 50px;
+
+border-bottom: 4px solid  $primary;
+  // border-bottom-style: solid;
+}
+
+.page-heading>.breadcrumb-div {
+  // height: 50px;
+  position: absolute;
+}
+
+.page-heading>.page-header-div {
+  // height: 50px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.abc{
+  transform: rotate(45deg);
+  border-bottom: 0px
+}
+
+.icon-style{
+  margin-right: 2px;
+}
+
+

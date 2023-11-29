@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-end align-item-center ">
+
+    <h5 class="col-10 text-center my-3">View WFH(work from home) Details</h5>
+    <button mat-icon-button [mat-dialog-close]="true" class="col-2">
+        <mat-icon>close</mat-icon>
+      </button>
+  </div>
+  
+  
+  
+  
+  
+  
+  <div class="text-center my-3 mx-5 ">
+   
+  <div class="flex-container mt-2">
+    <div class="row ">
+      <div class="col-6">
+        <!-- <span ><strong>Leave Type:</strong></span> -->
+        <mat-form-field class="h-auto ml-1 mt-2" appearance="outline">
+            <mat-label [style.color]="'blue'">Leave Type</mat-label>
+            <input matInput readonly type="text"  [value]="wfhReqServ.getLeaveTypeText(wfhRequest.workType !== undefined ? wfhRequest.workType : '')">
+  
+          </mat-form-field>
+    </div> 
+    <div class="col-6">
+        <!-- <span ><strong>Leave Duration:</strong></span> -->
+        <mat-form-field class="h-auto ml-1 mt-2" appearance="outline">
+            <mat-label [style.color]="'blue'">Leave Duration</mat-label>
+            <input matInput readonly type="text" [value]="wfhReqServ.getLeaveDurationText(wfhRequest.workDuration !== undefined ?wfhRequest.workDuration:'')" >
+          </mat-form-field>
+        </div>
+        
+    </div>
+  </div>
+    <div class="flex-container ">
+      <div class="row">
+      <div class="col-6 ">
+        <mat-form-field class="h-auto w-100" appearance="outline" readonly>
+          <mat-label [style.color]="'blue'">Leave Dates</mat-label>
+          <textarea matInput readonly>{{ getFormattedDates() }}</textarea>
+        </mat-form-field></div>
+        <div class="col-6 ">
+          <mat-form-field class="w-100"  appearance="outline" readonly>
+            <mat-label [style.color]="'blue'">Leave Reason</mat-label>
+            <textarea matInput readonly>{{leaveReason()}}</textarea>
+          </mat-form-field>
+        </div>
+        </div>
+       </div>
+        <div class="flex-container">
+       <div class="col-12 p-0 ">
+        <mat-form-field class="h-auto ml-1 w-100"  appearance="outline" readonly >
+          <mat-label [style.color]="'blue'" >Reject/Approved Reason</mat-label>
+          <textarea matInput readonly > {{wfhRequest.approvedrejectReason}}</textarea>
+        </mat-form-field>
+      </div></div>
+      
+  
+  
+  </div>
+  

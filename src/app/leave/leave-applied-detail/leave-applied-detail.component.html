@@ -1,0 +1,100 @@
+<div style="display: flex;">
+  <div style="width: 69%; ">
+    <mat-form-field style="width: 100%;">
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search...." #input>
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="Sl.No">
+        <th mat-header-cell *matHeaderCellDef [style.font-size]="'15px'" [style.text-align]="'center'"
+          [style.padding]="'0px'" [style.text-transform]="'uppercase'"> Sl No </th>
+        <td mat-cell *matCellDef="let element; let i = index" [style.text-align]="'center'" [style.font-size]="'15px'">
+          {{ i + 1 }} </td>
+      </ng-container>
+
+      <!-- totalPL Column -->
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef [style.font-size]="'15px'" [style.text-align]="'center'"
+          [style.padding]="'0px'" [style.text-transform]="'uppercase'"> Location </th>
+        <td mat-cell *matCellDef="let element" [style.text-align]="'center'" [style.font-size]="'15px'">
+          {{element['location']}}</td>
+      </ng-container>
+
+
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef [style.font-size]="'15px'" [style.text-align]="'center'"
+          [style.padding]="'0px'" [style.text-transform]="'uppercase'"> Name </th>
+        <td mat-cell *matCellDef="let element" [style.text-align]="'center'" [style.font-size]="'15px'">
+          {{element['firstName']}} {{element['lastName']}}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="appliedCL">
+        <th mat-header-cell *matHeaderCellDef [style.font-size]="'15px'" [style.text-align]="'center'"
+          [style.padding]="'0px'" [style.text-transform]="'uppercase'"> Applied CL </th>
+        <td mat-cell *matCellDef="let element" [style.text-align]="'center'" [style.font-size]="'15px'"> {{
+          element.appliedCL }} </td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="appliedPL">
+        <th mat-header-cell *matHeaderCellDef [style.font-size]="'15px'" [style.text-align]="'center'"
+          [style.padding]="'0px'" [style.text-transform]="'uppercase'"> Applied PL </th>
+        <td mat-cell *matCellDef="let element" [style.text-align]="'center'" [style.font-size]="'15px'"> {{
+          element.appliedPL }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="appliedFL">
+        <th mat-header-cell *matHeaderCellDef [style.font-size]="'15px'" [style.text-align]="'center'"
+          [style.padding]="'0px'" [style.text-transform]="'uppercase'"> Applied FL </th>
+        <td mat-cell *matCellDef="let element" [style.text-align]="'center'" [style.font-size]="'15px'"> {{
+          element.appliedFL }} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef [style.font-size]="'15px'" [style.text-align]="'center'"
+          [style.padding]="'0px'" [style.text-transform]="'uppercase'">Action</th>
+        <td mat-cell *matCellDef="let element">
+          <button (click)="onViewClick($event, element)" mat-icon-button color="green"
+            *ngIf="element.appliedPL !== 0 || element.appliedCL !== 0 || element.appliedFL !== 0">
+            <mat-icon>visibility</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClick(row)" style="cursor: pointer; ">
+      </tr>
+    </table>
+
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[ 10, 20, 50]" showFirstLastButtons
+      aria-label="Select page of periodic elements">
+    </mat-paginator>
+
+  </div>
+
+
+
+  <div style="width: 28%; margin-left: 10px;">
+    <mat-card class="demo-inline-calendar-card">
+      <mat-calendar [dateClass]="dateClass()"  (selectedChange)="onDateChanged($event)"
+        (monthSelected)="monthChanged($event)" (yearSelected)="handleYearSelected($event)" class="disable-arrows">
+      </mat-calendar>
+    </mat-card>
+    <div class="flex-container">
+      <div class="circle green-bg"></div>
+      <div style="margin-left: 10px;">
+        <span>Approved</span>
+      </div>
+
+      <div class="circle " style="margin-left: 20px;background-color: #ffc107;" ></div>
+      <div style="margin-left: 10px;">
+        <span>Pending</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,132 @@
+
+<!-- <mat-tab-group>
+  <mat-tab label="Kolkata">
+    
+    <div style="margin: 20px;">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+          
+        
+       
+          <ng-container matColumnDef="No">
+            <th mat-header-cell *matHeaderCellDef> Sl No </th>
+            <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+          </ng-container>
+        
+        
+          <ng-container matColumnDef="holidayname">
+            <th mat-header-cell *matHeaderCellDef> Holiday-Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.holidayName}} </td>
+          </ng-container>
+        
+       
+          <ng-container matColumnDef="holidaytype">
+            <th mat-header-cell *matHeaderCellDef> Holiday-Type </th>
+            <td mat-cell *matCellDef="let element"> {{element.holidayType}} </td>
+          </ng-container>
+        
+        
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.holidayDate}} </td>
+          </ng-container>
+        
+          
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <button  *ngIf="authService.isAdmin()" (click)="onSubmit(element.id)" mat-icon-button color="green" >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+  
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        
+        
+  </div>
+
+  </mat-tab>
+  <mat-tab label=""> 
+
+    <div style="margin: 20px;">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+          
+        
+        
+          <ng-container matColumnDef="No">
+            <th mat-header-cell *matHeaderCellDef> Sl No </th>
+            <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+          </ng-container>
+        
+        
+          <ng-container matColumnDef="holidayname">
+            <th mat-header-cell *matHeaderCellDef> Holiday-Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.holidayName}} </td>
+          </ng-container>
+        
+          
+          <ng-container matColumnDef="holidaytype">
+            <th mat-header-cell *matHeaderCellDef> Holiday-Type </th>
+            <td mat-cell *matCellDef="let element"> {{element.holidayType}} </td>
+          </ng-container>
+        
+         
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.holidayDate}} </td>
+          </ng-container>
+        
+          
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <button  *ngIf="authService.isAdmin()" (click)="onSubmit(element.id)" mat-icon-button color="green" >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+  
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        
+        
+  </div>
+
+  </mat-tab>
+</mat-tab-group> -->
+
+<div   class="m-5 h-auto px-5 py-3 ">
+    
+   <h5  class="text-center m-5">Which country's holiday list do you want to see?</h5>
+   <div class="row" style="padding-left: 20%; padding-right: 20%;">
+   <mat-form-field appearance="outline" >
+    <mat-label>Country Name</mat-label>
+    <mat-select [(ngModel)]="selectedCountry" name="selectedCountry">
+      <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <ng-container *ngIf="selectedCountry">
+    <mat-form-field appearance="outline" >
+      <mat-label>Place Name</mat-label>
+      <mat-select [(ngModel)]="selectedPlace" name="selectedPlace">
+        <mat-option *ngFor="let place of countryToPlaces[selectedCountry]" [value]="place">{{ place }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </ng-container>
+</div>
+  
+  
+<div class="d-flex justify-content-center" style="padding-left: 20%; padding-right: 20%;">
+
+  <button  *ngIf="selectedPlace" style="color: #f8f8f8;" mat-raised-button color="primary" (click)="onSubmit(selectedPlace)" class="my-2">Find</button>
+</div>
+</div>
+ 

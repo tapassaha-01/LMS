@@ -1,0 +1,35 @@
+<br>
+<form [formGroup]="changePasswordForm" class="vertical-form">
+  <h2 class="mat-h2">Change Password</h2>
+  <br>
+  <div class="form-group">
+    <mat-form-field style="width: 530px;">
+      <mat-label>Old Password</mat-label>
+      <input matInput formControlName="oldPassword" type="password">
+      <mat-error style="margin: 5px;" *ngIf="oldPassword?.touched && oldPassword?.invalid">
+        <div *ngIf="oldPassword?.errors?.['required']">Old Password is required.</div>
+        <div *ngIf="oldPassword?.errors?.['shouldBe1234']">Old Password is not valid.</div>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field style="width: 530px;">
+      <mat-label>{{labelchange1()}}</mat-label>
+      <input matInput formControlName="newPassword" type="password">
+      <mat-error style="margin: 5px;" *ngIf="newPassword?.touched && newPassword?.invalid">
+        <div *ngIf="newPassword?.errors?.['required']">New Password is required.</div>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field style="width: 530px;">
+      <mat-label>{{labelchange()}}</mat-label>
+      <input matInput formControlName="confirmPassword" type="password">
+    </mat-form-field>
+  </div>
+
+  <button (click)="onSubmit()" [disabled]="changePasswordForm.invalid" mat-raised-button
+    color="primary" style="margin-bottom: 20px;">Change Password</button>
+</form>

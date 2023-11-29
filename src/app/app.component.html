@@ -1,0 +1,9 @@
+<ng-container *ngIf="authService.isLoggedIn()">
+  <app-menu-side-bar></app-menu-side-bar>
+</ng-container>
+
+<div class="container" *ngIf="!authService.isLoggedIn()">
+  <app-login></app-login>
+</div>
+
+<!-- <app-footer></app-footer> -->

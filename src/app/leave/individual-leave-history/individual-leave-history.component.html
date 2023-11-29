@@ -1,0 +1,92 @@
+<div style="display: flex;">
+  <div style="width: 70%; ">
+    <div style="display: flex;">
+      <div style="width: 40%; padding-top: 10px;">
+
+        <div style="font-size: 15px; font-weight: normal;">
+          <span style="font-weight: bold;">Name :</span> {{name}}
+        </div>
+        <div style="font-size: 15px;font-weight: normal;"><span style="font-weight: bold;">Emp Id :</span> {{empid}}
+        </div>
+        <div style="font-size: 15px;font-weight: normal;"><span style="font-weight: bold;">Location :</span>
+          {{location}}</div>
+
+        <div style="font-size: 15px;font-weight: normal;"><span style="font-weight: bold;">Active :</span> {{active}}</div>
+        <div style="font-size: 15px;font-weight: normal;"><span style="font-weight: bold;">Email :</span> {{email}}
+        </div>
+      </div>
+
+      <div style="width: 60%;">
+        <canvas height="80" baseChart class="chart" [data]="barChartData" [options]="barChartOptions"
+          [plugins]="barChartPlugins" [type]="barChartType" (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)" [class.chart-label]="true"></canvas>
+      </div>
+    </div>
+
+
+
+    <table mat-table [dataSource]="leaveDetailSummry">
+
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="Sl.No">
+        <th mat-header-cell *matHeaderCellDef>Sl No</th>
+        <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+      </ng-container>
+
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="leavetype">
+        <th mat-header-cell *matHeaderCellDef>Leave Type </th>
+        <td mat-cell *matCellDef="let element"> {{ getLeaveTypeText(element['leaveType']) }}
+        </td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="leavereason">
+        <th mat-header-cell *matHeaderCellDef>Leave Reason </th>
+        <td mat-cell *matCellDef="let element"> {{element['leaveReason']}}</td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="leaveduration">
+        <th mat-header-cell *matHeaderCellDef>Leave Duration </th>
+        <td mat-cell *matCellDef="let element"> {{ getLeaveDurationText(element['leaveDuration'])}}</td>
+      </ng-container>
+
+      <!--     
+          <ng-container matColumnDef="">
+            <th mat-header-cell *matHeaderCellDef> Applied FL </th>
+            <td mat-cell *matCellDef="let element">  </td>
+          </ng-container> -->
+
+      <ng-container matColumnDef="Date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element['leaveDate']}}</td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </div>
+
+  <div style="width: 28%; margin: 10px;">
+    <mat-card class="demo-inline-calendar-card">
+      <mat-calendar [dateClass]="dateClass()"  (selectedChange)="onDateChanged($event)"
+        (monthSelected)="monthChanged($event)" (yearSelected)="handleYearSelected($event)" class="disable-arrows">
+      </mat-calendar>
+    </mat-card>
+    <div class="flex-container">
+      <div class="circle green-bg"></div>
+      <div style="margin-left: 10px;">
+        <span>Approved</span>
+      </div>
+      <div class="circle" style="margin-left: 20px; background-color: #ffc107"></div>
+      <div style="margin-left: 10px;">
+        <span>Pending</span>
+      </div>
+    </div>
+  </div>
+</div>

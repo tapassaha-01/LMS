@@ -1,0 +1,286 @@
+<mat-toolbar class="t-container" style="padding: 0px 3px!important;">
+  <button style="font-size: 20px; color: white" mat-icon-button class="example-icon"
+    aria-label="Example icon-button with menu icon" (click)="isExpanded = !isExpanded">
+    <mat-icon class="icon-style">menu</mat-icon>
+  </button>
+  <span style="font-size: 20px; color: white">Leave Management System</span>
+  <span class="example-spacer"></span>
+
+  <mat-menu #profileMenu="matMenu" xPosition="after" yPosition="above" class="custom-menu py-5">
+    <div class="profile-info" style="padding-left: 70px; padding-right: 70px">
+      <div class="profile-image" (click)="uploadImage.click()">
+        <img [src]="profileImageSrc" alt="Profile Image" />
+        <input type="file" #uploadImage style="display: none" (change)="onImageChange($event)" />
+      </div>
+      <div class="profile-details">
+        <div class="profile-name">
+          {{ authService.getUserDetails?.userName }}
+        </div>
+        <div class="profile-designation">
+          {{ authService.userDesignation() }}
+        </div>
+      </div>
+    </div>
+    <button mat-menu-item><mat-icon>account_circle</mat-icon> Profile</button>
+    <button mat-menu-item><mat-icon>settings</mat-icon> Settings</button>
+    <button (click)="openDialog()" mat-menu-item>
+      <mat-icon>password</mat-icon> Change Password
+    </button>
+    <mat-divider></mat-divider>
+
+    <button (click)="onLogout()" mat-menu-item>
+      <mat-icon>exit_to_app</mat-icon> Logout
+    </button>
+  </mat-menu>
+
+  <span style="font-size: 20px; color: white">{{
+    authService.getUserDetails?.userName
+    }}</span>
+  <button style="font-size: 20px; color: white" mat-icon-button [matMenuTriggerFor]="profileMenu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-drawer-container class="example-container mat-typography" autosize style="height: 100vh">
+  <mat-drawer #drawer opened="true" mode="side">
+    <!-- for LMS  -->
+    <mat-expansion-panel [hideToggle]="!isExpanded" class="m-0" >
+      <mat-expansion-panel-header>
+        <div class="side-menu">
+          <mat-icon>calendar_today</mat-icon>
+          <label class="side-menu-label" *ngIf="isExpanded">LMS</label>
+        </div>
+      </mat-expansion-panel-header>
+      <mat-nav-list style="padding-left: 0.5rem;">
+        <mat-list-item routerLink="/dashboard">
+          <div class="side-menu">
+            <mat-icon>dashboard</mat-icon>
+            <label class="side-menu-label" *ngIf="isExpanded">Summary</label>
+          </div>
+        </mat-list-item>
+
+        <mat-expansion-panel  [class.mat-elevation-z0]="true" [hideToggle]="!isExpanded">
+          <mat-expansion-panel-header>
+            <div class="side-menu">
+              <mat-icon>access_time</mat-icon>
+              <label class="side-menu-label" *ngIf="isExpanded">Leave</label>
+            </div>
+          </mat-expansion-panel-header>
+
+          <mat-expansion-panel  [class.mat-elevation-z0]="true" [hideToggle]="!isExpanded">
+            <mat-expansion-panel-header>
+              <div class="side-menu">
+                <mat-icon>access_time</mat-icon>
+                <label class="side-menu-label" *ngIf="isExpanded">Apply Leave</label>
+              </div>
+            </mat-expansion-panel-header>
+
+            <mat-nav-list style="padding-left: 0.5rem;">
+              <mat-list-item routerLink="/leave">
+                <div class="side-menu">
+                  <mat-icon>mode_edit</mat-icon>
+                  <label class="side-menu-label" *ngIf="isExpanded">Apply Leave</label>
+                </div>
+              </mat-list-item>
+      
+              <mat-list-item routerLink="/maternityleave">
+                <div class="side-menu">
+                  <mat-icon>mode_edit</mat-icon>
+                  <label class="side-menu-label" *ngIf="isExpanded">Maternity Leave</label>
+                </div>
+              </mat-list-item>
+  
+              <mat-list-item routerLink="/fileupload">
+                <div class="side-menu">
+                  <mat-icon>mode_edit</mat-icon>
+                  <label class="side-menu-label" *ngIf="isExpanded">F Leave</label>
+                </div>
+              </mat-list-item>
+      
+              <mat-list-item routerLink="/wfh">
+                <div class="side-menu">
+                  <mat-icon>mode_edit</mat-icon>
+                  <label class="side-menu-label" *ngIf="isExpanded">Work From Home</label>
+                </div>
+              </mat-list-item></mat-nav-list>
+          
+          </mat-expansion-panel>
+
+          <mat-expansion-panel  [class.mat-elevation-z0]="true" [hideToggle]="!isExpanded">
+            <mat-expansion-panel-header>
+              <div class="side-menu">
+                <mat-icon>history</mat-icon>
+                <label class="side-menu-label" *ngIf="isExpanded">Leave History</label>
+              </div>
+            </mat-expansion-panel-header>
+
+            <mat-nav-list style="padding-left: 0.5rem;">
+              <mat-list-item routerLink="/history">
+                <div class="side-menu">
+                  <mat-icon>history</mat-icon>
+                  <label class="side-menu-label" *ngIf="isExpanded">Leave History</label>
+                </div>
+              </mat-list-item>
+  
+              <mat-list-item routerLink="/wfh-history">
+                <div class="side-menu">
+                  <mat-icon>history</mat-icon>
+                  <label class="side-menu-label" *ngIf="isExpanded">WFH History</label>
+                </div>
+              </mat-list-item>
+  
+              <mat-list-item routerLink="/maternity-history">
+                <div class="side-menu">
+                  <mat-icon>history</mat-icon>
+                  <label class="side-menu-label" *ngIf="isExpanded">Maternity Leave History</label>
+                </div>
+              </mat-list-item>
+              </mat-nav-list>
+            
+
+          </mat-expansion-panel>
+
+          <mat-expansion-panel  [class.mat-elevation-z0]="true" [hideToggle]="!isExpanded">
+            <mat-expansion-panel-header>
+              <div class="side-menu">
+                <mat-icon>pending_actions</mat-icon>
+                <label class="side-menu-label" *ngIf="isExpanded">Approve Leave</label>
+              </div>
+            </mat-expansion-panel-header>
+
+            <mat-nav-list style="padding-left: 0.5rem;">
+              <mat-list-item routerLink="/aproval" *ngIf="authService.isManager()">
+                <div class="side-menu">
+                  <mat-icon>pending_actions</mat-icon>
+                  <label class="side-menu-label" *ngIf="isExpanded">Approve Leave</label>
+                </div>
+              </mat-list-item>
+   
+              <mat-list-item routerLink="/approvewfh" *ngIf="authService.isManager()">
+                <div class="side-menu">
+                  <mat-icon>pending_actions</mat-icon>
+                  <label class="side-menu-label" *ngIf="isExpanded">Approve Leave(WFH)</label>
+                </div>
+              </mat-list-item>
+  
+              <mat-list-item routerLink="/approvematernity" *ngIf="authService.isManager()">
+                <div class="side-menu">
+                  <mat-icon>pending_actions</mat-icon>
+                  <label class="side-menu-label" *ngIf="isExpanded">Approve Leave(Maternity)</label>
+                </div>
+              </mat-list-item>
+              </mat-nav-list>
+          </mat-expansion-panel>
+          
+        </mat-expansion-panel>
+
+  <mat-expansion-panel *ngIf="authService.isAdmin()" [class.mat-elevation-z0]="true" [hideToggle]="!isExpanded">
+          <mat-expansion-panel-header>
+            <div class="side-menu">
+              <mat-icon>wb_sunny</mat-icon>
+              <label class="side-menu-label" *ngIf="isExpanded">Holiday</label>
+            </div>
+          </mat-expansion-panel-header>
+
+          <mat-nav-list style="padding-left: 0.5rem;">
+            <mat-list-item routerLink="/holiday" *ngIf="authService.isAdmin()">
+              <div class="side-menu">
+                <mat-icon>edit_calendar</mat-icon>
+                <label class="side-menu-label" *ngIf="isExpanded">Manage Holiday</label>
+              </div>
+            </mat-list-item>
+            <mat-list-item routerLink="/holidaylist">
+              <div class="side-menu">
+                <mat-icon> calendar_month </mat-icon>
+                <label class="side-menu-label" *ngIf="isExpanded">Holiday List</label>
+              </div>
+            </mat-list-item>
+          </mat-nav-list>
+
+        </mat-expansion-panel>
+        
+       
+       
+
+
+        <mat-expansion-panel *ngIf="authService.isAdmin()" [class.mat-elevation-z0]="true" [hideToggle]="!isExpanded">
+          <mat-expansion-panel-header>
+            <div class="side-menu">
+              <mat-icon>people</mat-icon>
+              <label class="side-menu-label" *ngIf="isExpanded">Manage Employee</label>
+            </div>
+          </mat-expansion-panel-header>
+          <mat-nav-list style="padding-left: 0.5rem;">
+            <mat-list-item routerLink="/emploeelist" class="d-flex align-item-center">
+              <div class="side-menu">
+                <mat-icon>list</mat-icon>
+                <label class="side-menu-label" *ngIf="isExpanded">Employee List</label>
+              </div>
+            </mat-list-item>
+            <mat-list-item routerLink="/addemployee">
+              <div class="side-menu">
+                <mat-icon>person_add</mat-icon>
+                <label class="side-menu-label" *ngIf="isExpanded">Add Employee</label>
+              </div>
+            </mat-list-item>
+          </mat-nav-list>
+        </mat-expansion-panel>
+
+       
+
+        
+
+        <mat-list-item routerLink="/leaveDetail" *ngIf="authService.isAdmin()">
+          <div class="side-menu">
+            <mat-icon>table_chart</mat-icon>
+            <label class="side-menu-label" *ngIf="isExpanded">Employee Leave Summary</label>
+          </div>
+        </mat-list-item>
+        <mat-list-item routerLink="/leaveAppliedDetail" *ngIf="authService.isManager()">
+          <div class="side-menu">
+            <mat-icon>analytics</mat-icon>
+            <label class="side-menu-label" *ngIf="isExpanded">
+              Leave Application Report</label>
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <div class="side-menu">
+            <mat-icon>help</mat-icon>
+            <label class="side-menu-label" *ngIf="isExpanded">Help</label>
+          </div>
+        </mat-list-item>
+        <mat-list-item routerLink="/policy">
+          <div class="side-menu">
+            <mat-icon>policy</mat-icon>
+            <label class="side-menu-label" *ngIf="isExpanded">Policy</label>
+          </div>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-expansion-panel>
+    <!-- for Appraisal system  -->
+    <mat-expansion-panel class="mt-2" [hideToggle]="!isExpanded">
+      <mat-expansion-panel-header>
+        <div style="display: flex">
+          <mat-icon>work</mat-icon>
+          <label class="side-menu-label" *ngIf="isExpanded">Internal job portals</label>
+        </div>
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <div style="margin-left: 10px">
+      <div class="page-heading">
+        <div class="breadcrumb-div">
+          <app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+        </div>
+        <div class="page-header-div">
+          <app-page-heading [pageHeading]="pageHeading"></app-page-heading>
+        </div>
+      </div>
+      <div style="margin-top: 10px">
+        <router-outlet> </router-outlet>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
